@@ -17,6 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/users', 'UsersCreateController@create');
+Route::prefix('users')->group(function () {
+    Route::post('/', 'UsersCreateController@create');
+    Route::get('/', 'UsersIndexController@index');
+});
 
-Route::post('/todos', 'TodosCreateController@create');
+Route::prefix('tasks')->group(function () {
+    Route::post('/', 'TasksCreateController@create');
+});

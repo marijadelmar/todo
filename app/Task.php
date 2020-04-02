@@ -23,6 +23,11 @@ class Task extends Model
     {
         $this->user()->associate($user);
     }
+    
+    public function getUser()
+    {
+        return $this->user;
+    }
 
     public function assignedUsers(): BelongsToMany
     {
